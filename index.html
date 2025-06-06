@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dünyalar Güzelime Sürpriz</title>
+<style>
+body {
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(to right, #ffe6e6, #fff7f0);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+min-height: 100vh;
+margin: 0;
+text-align: center;
+padding: 5vw;
+}
+
+h1 {
+color: #333;
+font-size: 7vw;
+margin: 5vw 0 3vw;
+}
+
+p, .hint {
+font-size: 4.8vw;
+max-width: 95%;
+color: #444;
+}
+
+input, button {
+padding: 12px;
+font-size: 5vw;
+width: 90%;
+max-width: 400px;
+margin-top: 15px;
+border-radius: 10px;
+border: 1px solid #ccc;
+}
+
+button {
+background-color: #ffb3b3;
+color: #333;
+font-weight: bold;
+cursor: pointer;
+}
+
+.letter {
+margin-top: 30px;
+background: #fff;
+padding: 20px;
+border-radius: 14px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+display: none;
+max-width: 95%;
+font-size: 4.5vw;
+}
+
+img {
+max-width: 90%;
+height: auto;
+border-radius: 14px;
+margin-top: 5vw;
+}
+
+#music-button {
+font-size: 5vw;
+margin-top: 20px;
+padding: 12px 24px;
+border-radius: 10px;
+background-color: #ffd6d6;
+border: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Görsel -->
+<img src="haluk-merve.jpg" alt="Haluk ve Merve" />
+
+<h1>Dünyalar Güzelime Sürpriz Gizli Mesajım💌</h1>
+<p>Doğru kelimeyi bilirsen Caner'den sana bir sürpriz mektup var!</p>
+
+<input type="text" id="guess" placeholder="Gizli kelimeyi yaz...">
+<button onclick="checkWord()">Göster</button>
+
+<p class="hint">
+İPUCU: "İlk beraber yediğimiz yemek" ❤️
+</p>
+
+<div class="letter" id="loveLetter">
+<h2>💖 Cankuş Balkuş 💖</h2>
+<p>
+Eğer bu satırları okuyorsan, doğru kelimeyi bulmuşsun demektir...<br><br>
+Hayatıma neşe katan, her anımda aklımdan çıkmayan güzel insan...<br>
+Bilmeni isterim ki sana olan sevgim kelimelere sığmaz. Sonsuza dek sürecek bir bağ bu...<br><br>
+Seninle hambus yemek bile ayrı bir mutluluk <br>
+Çünkü yanında olmak her şeyi güzelleştiriyor.<br><br>
+— Canoski
+</p>
+</div>
+
+<script>
+const secretWord = "hamburger";
+
+function checkWord() {
+const userGuess = document.getElementById("guess").value.trim().toLowerCase();
+const letter = document.getElementById("loveLetter");
+if (userGuess === secretWord) {
+letter.style.display = "block";
+} else {
+alert("Hmm... Yanlış kelime. İpucu: En çok ne yemeyi seviyoruz ?");
+}
+}
+
+function startMusic() {
+const audio = document.getElementById("bgMusic");
+audio.play().then(() => {
+document.getElementById("music-button").innerText = "🎶 Müzik Çalıyor";
+document.getElementById("music-button").disabled = true;
+}).catch(err => {
+alert("Müzik çalınamadı. Lütfen tekrar dokun!");
+console.log(err);
+});
+}
+
+// Masaüstünde otomatik oynatma denemesi
+window.addEventListener('load', () => {
+const audio = document.getElementById("bgMusic");
+audio.play().catch(() => {
+// Mobilde engellenebilir — sessiz geç
+console.log("Mobil otomatik çalmaya izin vermedi.");
+});
+});
+</script>
+
+</body>
+</html>
